@@ -10,8 +10,8 @@
     "express": "^4.17.1",
     "helmet": "^3.21.3",
     "morgan": "^1.9.1",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "redux-saga": "^1.1.3"
