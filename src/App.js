@@ -1,56 +1,38 @@
 import React from 'react';
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Link,
+} from "react-router-dom";
 
-import { LOAD_USERS_REQUEST } from './actions'
-import './app.css';
+import Home from './Home'
+import About from './About'
+import Users from './Users'
 
-function App({ users, error, dispatch }) {
-
-  const onGetUsers = () => {
-    dispatch({ type: LOAD_USERS_REQUEST })
-  }
-
+function App() {
   return (
-    <div className="app">
-      <div className="content">
-        <h1>Users</h1>
-        <button onClick={onGetUsers}>Get Users</button>
-        <ol>
-          {users.map((user) => (
-            <li key={user.firstName}>
-              {user.firstName} {user.lastName}
-            </li>
-          ))}
-        </ol>
-        {error && (
-          <>
-            <p>{error.message}</p>
-          </>
-        )}
-      </div>
-    </div>
+    <BrowserRouter>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/users">Users</Link></li>
+        </ul>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
-App.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-    })
-  ),
-  error: PropTypes.shape({
-    message: PropTypes.string.isRequired,
-  }),
-  dispatch: PropTypes.func.isRequired,
-}
-
-function mapStateToProps({ users, error }) {
-  return {
-    users: users || [],
-    error,
-  }
-}
-
-export default connect(mapStateToProps)(App)
+export default App
