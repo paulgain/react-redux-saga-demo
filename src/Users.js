@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { LOAD_USERS_REQUEST } from './actions/index'
 
-const  Users = ({ users, error, onGetUsers }) => {
+const Users = ({ users, error, onGetUsers }) => {
   return (
     <>
     <h1>Users</h1>
@@ -26,5 +26,5 @@ const  Users = ({ users, error, onGetUsers }) => {
 
 export default connect(
   ({ users, error }) => ({ users: users || [], error }),
-  (dispatch) =>   ({ onGetUsers: () => dispatch({ type: LOAD_USERS_REQUEST }) }))
+  (dispatch) => ({ onGetUsers: () => dispatch({ type: LOAD_USERS_REQUEST }) }))
   (Users)
