@@ -1,6 +1,5 @@
-import { put, takeEvery } from 'redux-saga/effects'
-import axios from 'axios'
-import config from './config'
+import { call, put, takeEvery } from 'redux-saga/effects'
+import { api } from './services'
 
 import {
   LOAD_USERS_REQUEST,
@@ -10,10 +9,10 @@ import {
 
 function* getUsers(action) {
    try {
-      const { data } = yield axios.get(`${config.apiRoot}/api/users`)
-      yield put({type: LOAD_USERS_SUCCESS, users: data });
+      const users = yield call(api.getUsers)
+      yield put({type: LOAD_USERS_SUCCESS, users });
    } catch (error) {
-      yield put({type: LOAD_USERS_FAILURE, error: error.response.data.detail });
+      yield put({type: LOAD_USERS_FAILURE, error });
    }
 }
 
