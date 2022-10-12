@@ -1,14 +1,22 @@
-import * as React from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import createSagaMiddleware from 'redux-saga'
 
-import './index.css';
-import App from './App';
-import configureStore from './store/configureStore'
+import rootReducer from './reducers'
 import rootSaga from './sagas'
+import App from './App';
+import './index.css';
 
-const store = configureStore()
-store.runSaga(rootSaga)
+const sagaMiddleware = createSagaMiddleware();
+
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: [sagaMiddleware],
+})
+
+sagaMiddleware.run(rootSaga)
 
 render(
   <Provider store={store}>
