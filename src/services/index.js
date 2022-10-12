@@ -6,5 +6,3 @@ export const getUsers = async() => {
   const { data } = await axios.get(`${config.apiRoot}/api/users`)
   return data
 }
-
-

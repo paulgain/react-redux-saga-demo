@@ -1,23 +1,19 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import * as services from './services'
 
-import {
-  LOAD_USERS_REQUEST,
-  LOAD_USERS_SUCCESS,
-  LOAD_USERS_FAILURE
-} from './actions'
+import { getUsersSuccess, getUsersFailure} from './slice/users'
+import * as services from './services'
 
 function* getUsers(action) {
    try {
       const users = yield call(services.getUsers)
-      yield put({type: LOAD_USERS_SUCCESS, users });
+      yield put(getUsersSuccess(users))
    } catch (error) {
-      yield put({type: LOAD_USERS_FAILURE, error });
+      yield put(getUsersFailure(error))
    }
 }
 
 function* usersSaga() {
-  yield takeEvery(LOAD_USERS_REQUEST, getUsers);
+  yield takeEvery('userSlice/getUsers', getUsers);
 }
 
 export default usersSaga;

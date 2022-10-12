@@ -1,13 +1,16 @@
 [
   {
+    "id": 0,
     "firstName": "David",
     "lastName": "Bool"
   },
   {
+    "id": 1,
     "firstName": "Harry",
     "lastName": "Regex"
   },
   {
+    "id": 2,
     "firstName": "Jules",
     "lastName": "Number"
   }
