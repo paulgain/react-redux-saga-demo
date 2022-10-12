@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { api } from './services'
+import * as services from './services'
 
 import {
   LOAD_USERS_REQUEST,
@@ -9,7 +9,7 @@ import {
 
 function* getUsers(action) {
    try {
-      const users = yield call(api.getUsers)
+      const users = yield call(services.getUsers)
       yield put({type: LOAD_USERS_SUCCESS, users });
    } catch (error) {
       yield put({type: LOAD_USERS_FAILURE, error });

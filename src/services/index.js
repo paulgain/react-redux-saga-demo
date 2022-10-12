@@ -1,3 +1,10 @@
-import * as _api from './api'
+import axios from 'axios'
 
-export const api = _api
+import config from '../config'
+
+export const getUsers = async() => {
+  const { data } = await axios.get(`${config.apiRoot}/api/users`)
+  return data
+}
+
+
